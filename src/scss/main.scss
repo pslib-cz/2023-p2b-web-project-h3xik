@@ -1,0 +1,17 @@
+// Normalize <-
+@import "dist/normalize";
+
+// Abstracts <-
+@import "abstracts/functions";
+@import "abstracts/keyframes";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+// Components <-
+@import "components/header";
+
+// Page specific <-
+@import "pages/mainpage";
+
+@import "base";
+@import "components";
