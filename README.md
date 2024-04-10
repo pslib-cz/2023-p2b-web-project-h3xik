@@ -1,17 +1,20 @@
-# this.Jiří
+# this.Jiří - Personal Website
 
-### Originální zdroj: [Link](https://github.com/h3xik/Personal-Website)
+This repo contains just the source code to my personal website.
 
-Osobní webová stánka, sloužící jako osobní portfolio a zároveň jako cvičný projekt.
-Na stránce se nachází obecné informace o mně, o tom co mě baví a o projektech, na kterých pracuji.
+## Installation
 
-### Struktura
-- `index.html` - Hlavní stránka
-- `apollo.html` - Stránka o projektu Apollo
--  `contact.html` - Stránka s formulářem pro kontakt
+Installation is possible, however, one of the dependencies is private, so the site won't work properly.
 
-Odkaz na Figmu:
-[Link](https://www.figma.com/file/a4nO7sQ7w2ksnIBKpkgjWy/Web-Projekt?type=design&node-id=0%3A1&mode=design&t=GcD5f8m4jHh7vOOe-1)
+```bash
+git clone https://github.com/h3xik/Personal-Website.git
+```
 
-Odkaz na GitHub Page:
-[Link](https://pslib-cz.github.io/2023-p2b-web-project-h3xik/)
+```bach
+npm install
+```
+
+## Deployment
+The site is deployed on [Vercel](https://h3xik.cz/).
+
+This reposity is a mirror of the original repository on [GitHub](https://github.com/h3xik/Personal-Website)

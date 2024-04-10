@@ -1,3 +1,31 @@
+main {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  max-width: 960px;
+  padding-inline: 1.5rem;
+  position: relative;
+  transition: filter 0.5s ease-in-out;
+
+  article {
+	margin: 2em 0.5em;
+
+	h3 {
+	  color: $c-brand;
+	  font-size: 1.5rem;
+	  font-style: normal;
+	  font-weight: 600;
+	  letter-spacing: .5px;
+	  margin-bottom: 0.85em;
+	}
+
+	p {
+	  font-size: 0.95rem;
+	  line-height: 1.8;
+	}
+  }
+}
+
 /// Styles for the navigation.
 .navigation-container {
   -webkit-backdrop-filter: blur(8px);
@@ -13,11 +41,11 @@
 .navigation {
   align-items: center;
   display: flex;
+  font-size: 1.1rem;
   justify-content: space-between;
   list-style: none;
   padding-inline: 1.25rem;
-  font-size: 1.1rem;
-
+  
   &__logo {
 	color: $c-brand-darker;
 	text-decoration: none;
@@ -39,6 +67,152 @@
   }
 }
 
+.header {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: $c-white;
+  height: 100lvh;
+  letter-spacing: 1.5px;
+  mask-image: linear-gradient(to bottom, $c-black 80%, transparent 100%);
+  overflow: hidden;
+  padding: 25lvh 0;
+  position: relative;
+  text-align: center;
+
+  &__headings {
+	opacity: 0;
+	transform: translateY(1em);
+  }
+
+  &__title {
+	font-size: fluidTypography(2.4rem, 3.15rem);
+	font-weight: 500;
+
+	& > span { color: $c-brand-darker; }
+  }
+
+  &__subtitle {
+	font-size: fluidTypography(0.75rem, 1rem);
+	margin-bottom: 5rem;
+	font-weight: 400;
+  }
+
+  &__caption {
+	color: $c-brand-lighter;
+	font-size: fluidTypography(0.65rem, 0.9rem);
+  }
+}
+
+/// Styles for header.
+// Hvězdy
+.star-wrapper {
+  background: linear-gradient(to bottom, #050403 0%, #131210 100%);
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -3;
+
+  .star-layer {
+	background: transparent;
+	height: 1px;
+	position: absolute;
+	width: 1px;
+
+	&::after {
+	  background: transparent;
+	  content: " ";
+	  height: 1px;
+	  position: absolute;
+	  top: 2000px;
+	  width: 1px;
+	}
+
+	&--1 {
+	  animation: stars-move 1000s linear infinite;
+	  box-shadow: $shadows-small;
+
+	  &::after { box-shadow: $shadows-small; }
+	}
+
+	&--2 {
+	  animation: stars-move 500s linear infinite;
+	  box-shadow: $shadows-medium;
+	  height: 2px;
+	  width: 2px;
+
+	  &::after {
+		box-shadow: $shadows-medium;
+		height: 2px;
+		width: 2px;
+	  }
+	}
+  }
+}
+
+// Záře
+.scene {
+  z-index: -2;
+}
+
+.lights {
+  display: flex;
+  filter: blur(75px) brightness(55%);
+  height: 100vmax;
+  left: 50%;
+  position: absolute;
+  top: 20%;
+  transform: translate(-20%, -55%) rotate(30deg);
+  width: 200vmax;
+  z-index: -2;
+}
+
+.light {
+  $color-one: #015268;
+  $color-two: #025385;
+  $color-three: #038298;
+  $up: calc(var(--y, 10) * 2vmax);
+  $left: calc(var(--x, 2) * 2vmax);
+
+  animation: aurora-shift calc(var(--duration, 2) * 1s) calc(var(--delay, 0) * -1s) infinite ease;
+  background: linear-gradient(0deg, transparent, $color-one 10%, transparent, $color-two 40%, transparent, $color-three 60%) center bottom no-repeat;
+  background-size: 100% 40vmax;
+  flex: 1;
+  transform: translate($left, $up) scale(1);
+  z-index: -2;
+
+  @media (width < 768px) {
+	$up: calc(var(--y, 10) * 2vmax);
+	$left: calc(var(--x, 2) * 2vmax);
+  }
+}
+
+/// Styles for the shillset component.
+.skillset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+
+  span {
+	background-color: $c-gray--1;
+	border: solid 1px $c-gray--2;
+	border-radius: 3px;
+	color: inherit;
+	cursor: default;
+	font-size: 0.80rem;
+	font-weight: 400;
+	padding: 0.4em 0.5em;
+	transition: all .2s;
+
+	&:hover {
+	  border: solid 1px $c-brand-lighter;
+	  transform: translateY(-2px);
+	}
+  }
+}
+
 /// Styles for the projects cards component. This component is located on the main page.
 .projects {
   display: grid;
@@ -50,7 +224,7 @@
 	margin-bottom: 1.5em;
   }
 
-  & .project {
+  & .project-card {
 	background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 100%);
 	border: solid 1px $c-gray--2;
 	border-radius: 3px;
@@ -67,8 +241,8 @@
 	&__title {
 	  color: $c-brand;
 	  font-size: 1.2rem;
-	  margin-bottom: 0.3em;
 	  font-weight: 500;
+	  margin-bottom: 0.3em;
 	}
 
 	&__stack {
@@ -240,16 +414,16 @@
 	  cursor: pointer;
 	  font-size: 0.85rem;
 	  padding: 0.5rem 1rem;
-	  width: 7rem;
 	  transition: all 0.2s;
-	  
+	  width: 7rem;
+
 	  &:hover {
 		border-color: $c-brand-lighter;
 	  }
-	  
+
 	  &:active {
-		border-color: $c-brand-darker;
 		background: $c-brand-darker;
+		border-color: $c-brand-darker;
 	  }
 	}
   }
